@@ -1,0 +1,78 @@
+# To debug apparmor denials:
+# ssh root@192.168.1.XYZ -p 22222
+# journalctl -f _TRANSPORT="audit" -g 'apparmor="DENIED"'
+
+#include <tunables/global>
+
+profile apcupsd flags=(attach_disconnected,mediate_deleted) {
+  #include <abstractions/base>
+
+  # Capabilities
+  signal (send) set=(kill,term,int,hup,cont) peer=*_apcupsd//*,
+
+  # S6-Overlay
+  /bin/busybox ix,
+  /etc/{s6**,fix-attrs.d/,services.d/} r,
+  /init rix,
+  /package/admin/{s6,execline}** rix,
+  /run/{,service/} rw,
+  /run/{,service/}{,.}s6** krwix,
+
+  # Supervisor API
+  /usr/bin/curl cx -> curl,
+  /usr/bin/jq cx -> jq,
+
+  # Run wrapper within the same context, because double nested contexts are broken on HA Supervisor
+  /sbin/apcupsd-wrapper.sh rix,
+
+  # Programs apcupsd-wrapper.sh use
+  /sbin/apcupsd cx -> apcupsd_exec,
+  /usr/bin/envsubst cx -> envsubst,
+
+  # Bashio for apcupsd-wrapper.sh
+  /bin/bash rix,
+  /dev/tty rw,
+  /etc/passwd r,
+  /tmp/.bashio** rwk,
+  /usr/lib/bashio/** ix,
+
+  # syslogd for apcupsd-wrapper.sh (I can't make it switch context for some reason)
+  /run/syslogd.pid rw,
+
+  # envsubst in/out for apcupsd-wrapper.sh
+  /etc/apcupsd/apcupsd.conf.in r,
+  /etc/apcupsd/apcupsd.conf w,
+
+  profile curl flags=(attach_disconnected,mediate_deleted) {
+    #include <abstractions/base>
+    #include <abstractions/nameservice>
+    #include <abstractions/openssl>
+    /usr/bin/curl mr,
+    signal (receive) peer=*apcupsd,
+  }
+
+  profile jq flags=(attach_disconnected,mediate_deleted) {
+    #include <abstractions/base>
+    /usr/bin/jq mr,
+    signal (receive) peer=*apcupsd,
+  }
+
+  profile envsubst flags=(attach_disconnected,mediate_deleted) {
+    #include <abstractions/base>
+    /usr/bin/envsubst mr,
+    signal (receive) peer=*apcupsd,
+
+    /etc/apcupsd/apcupsd.conf.in r,
+    /etc/apcupsd/apcupsd.conf w,
+  }
+
+  profile apcupsd_exec flags=(attach_disconnected,mediate_deleted) {
+    #include <abstractions/base>
+    /sbin/apcupsd mr,
+    signal (receive) peer=*apcupsd,
+
+    /dev/console w,
+    /etc/apcupsd/apcupsd.conf r,
+    /run/apcupsd.pid rw,
+  }
+}

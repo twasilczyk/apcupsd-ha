@@ -1,0 +1,13 @@
+configuration:
+  deviceaddr:
+    name: Adres UPS
+    description: Adres IP karty sieciowej zasilacza UPS (z włączonym SNMP).
+  deviceport:
+    name: Port SNMP
+    description: Numer portu protokołu SNMPv1/v2 używanego do komunikacji z UPS-em.
+  snmpcommunity:
+    name: Społeczność SNMP
+    description: Nazwa społeczności SNMP (community), używana do logowania do UPS-a.
+  polltime:
+    name: Częstotliwość odświeżania
+    description: Częstotliwość w sekundach, z jaką serwis odświaża status UPS-a.

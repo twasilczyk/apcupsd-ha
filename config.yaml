@@ -1,0 +1,32 @@
+name: "apcupsd"
+description: "Power Management daemon for Ethernet-connected APC UPS"
+url: "https://github.com/twasilczyk/apcupsd-ha"
+version: "1.0.0"
+slug: "apcupsd"
+ports:
+  3551/tcp: 3551
+ports_description:
+  3551/tcp: Network Information Server (NIS) port
+init: false
+image: "ghcr.io/twasilczyk/apcupsd-ha-{arch}"
+codenotary: codenotary@wasilczyk.pl
+apparmor: true
+# auth_api is not needed, used just to bump rating to 8. We can't use ingress setting, because that
+# one would cause undesired side effects (UI changes to expose web UI, which we don't have).
+auth_api: true
+arch:
+  - aarch64
+  - amd64
+  - armhf
+  - armv7
+  - i386
+options:
+  deviceaddr: ''
+  deviceport: 161
+  snmpcommunity: 'public'
+  polltime: 60
+schema:
+  deviceaddr: str
+  deviceport: port
+  snmpcommunity: str
+  polltime: int(1,3600)

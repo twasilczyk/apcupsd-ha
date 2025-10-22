@@ -1,10 +1,12 @@
 name: "apcupsd-ha"
 description: "apcupsd addon for NMC-equipped APC UPS"
 url: "https://github.com/twasilczyk/apcupsd-ha"
-version: "0.0.1"
+version: "0.0.2"
 slug: "apcupsd"
 ports:
   3551/tcp: 3551
+ports_description:
+  3551/tcp: Network Information Server (NIS) port
 init: false
 arch:
   - aarch64

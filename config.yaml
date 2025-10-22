@@ -21,4 +21,4 @@ options:
 schema:
   deviceaddr: str
   snmpcommunity: str
-  polltime: 'int(1, 3600)'
+#  polltime: 'int(1, 3600)'

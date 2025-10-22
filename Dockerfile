@@ -1,7 +1,7 @@
 ARG BUILD_FROM=error
 FROM $BUILD_FROM
 
-EXPOSE 3551
+EXPOSE 3551/tcp
 
 RUN apk add apcupsd
 

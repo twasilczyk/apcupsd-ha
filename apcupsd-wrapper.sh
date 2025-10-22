@@ -8,6 +8,7 @@ fi
 
 SNMPCOMMUNITY=$(bashio::config 'snmpcommunity')
 if [ -z "$DEVICEADDR" ]; then
+    echo "default"
     SNMPCOMMUNITY="public"
 fi
 

@@ -5,6 +5,7 @@ ls -l /dev/log || true
 
 # Log to stdout
 touch /tmp/myfile
+killall syslogd || true
 syslogd -n -O /tmp/myfile &
 tail -f /tmp/myfile &
 

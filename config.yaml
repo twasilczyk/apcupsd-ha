@@ -1,7 +1,7 @@
 name: "apcupsd"
 description: "apcupsd daemon for NMC-equipped APC UPS"
 url: "https://github.com/twasilczyk/apcupsd-ha"
-version: "0.0.18"
+version: "0.0.19"
 slug: "apcupsd"
 ports:
   3551/tcp: 3551
@@ -14,3 +14,9 @@ arch:
   - armhf
   - armv7
   - i386
+options:
+  deviceaddr: "UPS address"
+  snmpcommunity: "SNMP community"
+schema:
+  deviceaddr: "str?"
+  snmpcommunity: bool

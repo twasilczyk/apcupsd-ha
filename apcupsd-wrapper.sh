@@ -17,7 +17,7 @@ echo "cfg start"
 echo $(bashio::config 'deviceaddr')
 echo $(bashio::config 'snmpcommunity')
 echo $(bashio::config 'polltime')
-echo "cfg split
+echo "cfg split"
 echo "1 $DEVICEADDR"
 echo "2 $SNMPCOMMUNITY"
 echo "2 $POLLTIME"

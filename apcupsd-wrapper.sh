@@ -4,6 +4,5 @@
 mkdir -p /run/systemd/journal
 syslogd -n -O - &
 
-echo "OK T"
-
+# Start apcupsd in foreground
 apcupsd -b

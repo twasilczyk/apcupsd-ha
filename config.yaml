@@ -17,8 +17,8 @@ arch:
 options:
   deviceaddr: ''
   snmpcommunity: 'public'
-  polltime: 60
+#  polltime: 60
 schema:
   deviceaddr: str
   snmpcommunity: str
-  polltime: 'int(1, 3600)'
+#  polltime: 'int(1, 3600)'

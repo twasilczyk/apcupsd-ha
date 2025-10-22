@@ -2,7 +2,8 @@
 
 # Log to stdout
 mkdir -p /run/systemd/journal
-#touch /run/systemd/journal/dev-log
 syslogd -n -O - &
+
+echo "OK T"
 
 apcupsd -b

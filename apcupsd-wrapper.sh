@@ -4,6 +4,8 @@
 ls -l /dev/log || true
 ls -l /run/systemd/journal/dev-log || true
 test -S /run/systemd/journal/dev-log || echo "journald socket not present here"
+mkdir -p /run/systemd/journal
+touch /run/systemd/journal/dev-log
 
 # Log to stdout
 touch /tmp/myfile

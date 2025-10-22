@@ -1,7 +1,7 @@
 name: "apcupsd-ha"
 description: "apcupsd addon for NMC-equipped APC UPS"
 url: "https://github.com/twasilczyk/apcupsd-ha"
-version: "0.0.7"
+version: "0.0.8"
 slug: "apcupsd"
 ports:
   3551/tcp: 3551

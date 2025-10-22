@@ -1,0 +1,10 @@
+configuration:
+  deviceaddr:
+    name: UPS Address
+    description: The IP address of the UPS Network Management Card with SNMP enabled.
+  snmpcommunity:
+    name: SNMP Community
+    description: The SNMP community string for accessing the UPS.
+  polltime:
+    name: Poll Time
+    description: The rate in seconds that the daemon polls the UPS for status.

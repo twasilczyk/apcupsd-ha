@@ -77,7 +77,6 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
     #/etc/ssl/certs/**              r,    # Debian/Ubuntu bundle dir
     #/etc/ssl/ca-bundle.crt         r,    # (often on Alpine as well)
     #/etc/ssl/certs/ca-certificates.crt r,# Debian/Ubuntu single bundle
-    #/etc/nsswitch.conf             r,
     # Bashio
     /tmp/** rwk,
     # apcupsd configs (template + final)
@@ -87,6 +86,7 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
     /etc/ssl/openssl.cnf           r,
     /etc/hosts                     r,
     /etc/resolv.conf               r,
+    /etc/nsswitch.conf             r,
 
     /etc/apcupsd/**            r,
     /etc/apcupsd/apcupsd.conf          rw,

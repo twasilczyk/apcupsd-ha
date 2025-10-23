@@ -9,4 +9,4 @@ COPY apcupsd-wrapper.sh /sbin/apcupsd-wrapper.sh
 RUN chmod +x /sbin/apcupsd-wrapper.sh
 CMD [ "/sbin/apcupsd-wrapper.sh" ]
 
-COPY apcupsd.conf /etc/apcupsd/apcupsd.conf
+COPY apcupsd.conf.in /etc/apcupsd/apcupsd.conf.in

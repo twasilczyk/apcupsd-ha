@@ -23,6 +23,10 @@ echo "2 $SNMPCOMMUNITY"
 echo "2 $POLLTIME"
 echo "cfg end"
 
+cat /etc/apcupsd/apcupsd.conf.in
+envsubst < /etc/apcupsd/apcupsd.conf.in > /etc/apcupsd/apcupsd.conf
+cat /etc/apcupsd/apcupsd.conf
+
 # Log to stdout
 mkdir -p /run/systemd/journal
 syslogd -n -O - &

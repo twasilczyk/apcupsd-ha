@@ -72,16 +72,11 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
     signal (receive) set=(term,cont,kill,hup,int) peer=f498a6ad_apcupsd,
     # (optional: also allow sending back to the outer profile)
     signal (send)    set=(term,cont,kill,hup,int) peer=f498a6ad_apcupsd,
-    # --- curl / TLS / DNS basics ---
-    #/etc/ssl/cert.pem              r,    # Alpine
-    #/etc/ssl/certs/**              r,    # Debian/Ubuntu bundle dir
-    #/etc/ssl/ca-bundle.crt         r,    # (often on Alpine as well)
-    #/etc/ssl/certs/ca-certificates.crt r,# Debian/Ubuntu single bundle
     # Bashio
     /tmp/** rwk,
     # apcupsd configs (template + final)
-    /run/{,**} rwk,
-    /dev/console         rw,
+    #/run/{,**} rwk,
+    #/dev/console         rw,
     # CONFIRMED
     /etc/ssl/openssl.cnf           r,
     /etc/hosts                     r,

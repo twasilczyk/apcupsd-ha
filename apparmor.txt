@@ -1,5 +1,7 @@
 #include <tunables/global>
 
+# ssh root@192.168.1.XYZ -p 22222
+# journalctl -f _TRANSPORT="audit" -g 'apparmor="DENIED"'
 profile apcupsd flags=(attach_disconnected,mediate_deleted) {
   #include <abstractions/base>
 
@@ -9,16 +11,24 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
 
   # S6-Overlay
   /init ix,
-  /bin/** ix,
-  /usr/bin/** ix,
+  #/bin/** ix,
+  #/usr/bin/** ix,
   /run/{s6,s6-rc*,service}/** ix,
-  /package/** ix,
-  /command/** ix,
+  #/package/** ix,
+  #/command/** ix,
   /etc/services.d/** rwix,
   /etc/cont-init.d/** rwix,
   /etc/cont-finish.d/** rwix,
   /run/{,**} rwk,
   /dev/tty rw,
+
+  # s6/execline need mmap+read+exec on their commands
+  /package/**           mrix,
+  /command/**           mrix,
+  /bin/**               mrix,
+  /usr/bin/**           mrix,
+  /usr/sbin/**          mrix,
+  /sbin/**              mrix,
 
   # Bashio
   /usr/lib/bashio/** ix,
@@ -28,9 +38,9 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
   /data/** rw,
 
   # Start new profile for service
-  /sbin/apcupsd-wrapper.sh cx -> apcupsd,
+  /sbin/apcupsd-wrapper.sh cx -> apcupsdwr,
 
-  profile apcupsd flags=(attach_disconnected,mediate_deleted) {
+  profile apcupsdwr flags=(attach_disconnected,mediate_deleted) {
     #include <abstractions/base>
 
     # Receive signals from S6-Overlay

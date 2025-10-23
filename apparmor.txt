@@ -78,6 +78,7 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
     /etc/nsswitch.conf r,
 
     # Bashio
+    /usr/lib/bashio/** ix,
     /tmp/** rwk,
 
     # apcupsd-wrapper.sh envsubst

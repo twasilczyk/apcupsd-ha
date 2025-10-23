@@ -80,7 +80,7 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
     /usr/bin/with-contenv     rix,
     # allow creating and using /run/systemd (some scripts defensively mkdir it)
     #/run/systemd        rwkc,
-    /run/systemd/**      rwk,
+    /run/systemd/**      rwkc,
     # ADDED END
   }
 }

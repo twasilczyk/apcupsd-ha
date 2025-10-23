@@ -49,13 +49,12 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
     /usr/bin/curl ix,
     /usr/bin/envsubst ix,
     /usr/bin/jq ix,
-    /etc/passwd r,
-    /dev/tty rw,
+    /sbin/apcupsd ix,
+    #/etc/passwd r,
+    #/dev/tty rw,
 
     # S6-Overlay
     /package/** mrix,
-    #/usr/bin/** ix,
-    /sbin/apcupsd ix,
 
     # network access
     /etc/ssl/openssl.cnf r,

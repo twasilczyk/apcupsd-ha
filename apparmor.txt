@@ -39,7 +39,10 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
     signal (receive) peer=*apcupsd,
 
     # Access to options.json and other files within your addon
-    /data/** rw,
+    #/data/** rw,
+
+    # S6-Overlay
+    /package/** mrix,
 
     # Access required for service functionality
     /sbin/apcupsd-wrapper.sh r,
@@ -52,9 +55,6 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
     /sbin/apcupsd ix,
     /etc/passwd r,
     /dev/tty rw,
-
-    # S6-Overlay
-    #/package/** mrix,
 
     # network access
     /etc/ssl/openssl.cnf r,

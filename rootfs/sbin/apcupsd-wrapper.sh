@@ -1,9 +1,7 @@
 #!/usr/bin/with-contenv bashio
 
-echo "wrap1"
+echo "wrap12"
 # Log to stdout
-#mkdir -p /run/systemd/journal
-echo "wrap2"
 syslogd -n -O - &
 
 echo "wrap3"

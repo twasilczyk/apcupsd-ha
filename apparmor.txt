@@ -40,9 +40,9 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
   /data/** rw,
 
   # Start new profile for service
-  /sbin/apcupsd-wrapper.sh cx -> apcupsdwrapper,
+  /sbin/apcupsd-wrapper.sh cx -> apcupsdwr,
 
-  profile apcupsdwrapper flags=(attach_disconnected,mediate_deleted) {
+  profile apcupsdwr flags=(attach_disconnected,mediate_deleted) {
     #include <abstractions/base>
 
     # Receive signals from S6-Overlay

@@ -80,8 +80,12 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
     /etc/resolv.conf r,
     /etc/nsswitch.conf r,
 
+    # apcupsd-wrapper.sh envsubst
     /etc/apcupsd/** r,
     /etc/apcupsd/apcupsd.conf rw,
+
+    # syslogd
+    /dev/console w,
 
     # apcupsd
     /run/** rwk,

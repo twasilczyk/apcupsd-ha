@@ -13,12 +13,12 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
   /init rix,
   #/bin/** ix,
   #/usr/bin/** ix,
-  /run mrix,
-  /run/ mrix,
-  /run/** mrix,
-  /run/s6 mrix,
-  /run/s6/ mrix,
-  /run/{s6,s6-rc*,service}/** mrix,
+  /run mrixk,
+  /run/ mrixk,
+  /run/** mrixk,
+  /run/s6 mrixk,
+  /run/s6/ mrixk,
+  /run/{s6,s6-rc*,service}/** mrixk,
   /package/** rix,
 
   # Start new profile for service

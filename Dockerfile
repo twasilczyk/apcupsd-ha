@@ -7,4 +7,4 @@ CMD [ "/sbin/apcupsd-wrapper.sh" ]
 RUN apk add apcupsd envsubst
 
 COPY rootfs /
-RUN chmod +x /sbin/apcupsd-wrapper.sh
+#RUN chmod +x /sbin/apcupsd-wrapper.sh

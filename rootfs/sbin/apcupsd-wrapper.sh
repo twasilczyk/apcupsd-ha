@@ -1,5 +1,10 @@
 #!/usr/bin/with-contenv bashio
 
+# Log to stdout
+mkdir -p /run/systemd/journal
+syslogd -n -O - &
+
+# Parse HA config
 export DEVICEADDR=$(bashio::config 'deviceaddr')
 if [ -z "$DEVICEADDR" ]; then
     bashio::log.error "UPS Address not configured!"
@@ -14,13 +19,9 @@ fi
 
 export POLLTIME=$(bashio::config 'polltime')
 
-cat /etc/apcupsd/apcupsd.conf.in
+# Generate apcupsd config
 envsubst < /etc/apcupsd/apcupsd.conf.in > /etc/apcupsd/apcupsd.conf
 cat /etc/apcupsd/apcupsd.conf
-
-# Log to stdout
-mkdir -p /run/systemd/journal
-syslogd -n -O - &
 
 # Start apcupsd in foreground
 apcupsd -b

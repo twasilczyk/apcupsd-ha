@@ -97,6 +97,9 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
     /etc/nsswitch.conf             r,
     # Bashio
     /tmp/** rwk,
+    # apcupsd configs (template + final)
+    /etc/apcupsd/            r,
+    /etc/apcupsd/apcupsd.conf          rw,
     # ADDED END
   }
 }

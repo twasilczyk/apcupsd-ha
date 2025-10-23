@@ -100,7 +100,8 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
     # apcupsd configs (template + final)
     /etc/apcupsd/**            r,
     /etc/apcupsd/apcupsd.conf          rw,
-  /run/{,**} rwk,
+    /run/{,**} rwk,
+    /dev/console         rw,
     # ADDED END
   }
 }

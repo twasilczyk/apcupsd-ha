@@ -12,9 +12,10 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
   # S6-Overlay
   /init rix,
   #/bin/** ix,
+  /bin/busybox ix,
   #/usr/bin/** ix,
   #/run mrwixk,
-  #/run/ mrwixk,
+  /run/ rw,
   #/run/** mrwixk,
   #/run/s6 mrwixk,
   #/run/s6/ mrwixk,

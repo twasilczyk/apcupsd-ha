@@ -73,17 +73,15 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
     # (optional: also allow sending back to the outer profile)
     signal (send)    set=(term,cont,kill,hup,int) peer=f498a6ad_apcupsd,
     # Bashio
-    /tmp/** rwk,
-    # apcupsd configs (template + final)
-    #/dev/console         rw,
+    #/tmp/** rwk,
     # CONFIRMED
-    /etc/ssl/openssl.cnf           r,
-    /etc/hosts                     r,
-    /etc/resolv.conf               r,
-    /etc/nsswitch.conf             r,
+    /etc/ssl/openssl.cnf r,
+    /etc/hosts r,
+    /etc/resolv.conf r,
+    /etc/nsswitch.conf r,
 
-    /etc/apcupsd/**            r,
-    /etc/apcupsd/apcupsd.conf          rw,
+    /etc/apcupsd/** r,
+    /etc/apcupsd/apcupsd.conf rw,
 
     # apcupsd
     /run/** rwk,

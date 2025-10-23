@@ -11,11 +11,11 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
 
   # S6-Overlay
   /init ix,
-  #/bin/** ix,
-  #/usr/bin/** ix,
+  /bin/** ix,
+  /usr/bin/** ix,
   /run/{s6,s6-rc*,service}/** ix,
-  #/package/** ix,
-  #/command/** ix,
+  /package/** ix,
+  /command/** ix,
   /etc/services.d/** rwix,
   /etc/cont-init.d/** rwix,
   /etc/cont-finish.d/** rwix,
@@ -24,10 +24,10 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
 
   # s6/execline need mmap+read+exec on their commands
   # ADDED START
-  /package/**           mrix,
-  /command/**           mrix,
-  /bin/**               mrix,
-  /usr/bin/**           mrix,
+  #/package/**           mrix,
+  #/command/**           mrix,
+  #/bin/**               mrix,
+  #/usr/bin/**           mrix,
   /usr/sbin/**          mrix,
   /sbin/**              mrix,
   # allow sending signals to the inner profile

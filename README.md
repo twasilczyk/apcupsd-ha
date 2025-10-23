@@ -18,3 +18,7 @@ This add-on complements [apcupsd integration](https://www.home-assistant.io/inte
    Settings → Devices & services → Add integration → APC UPS Daemon
 6. Configure integration \
    Leave default settings (`localhost:3551`) and click Submit
+
+## Supported devices
+
+Generally, all NMC (e.g. AP9630) equipped APC UPS (e.g. SMT1500) are expected to work. UPS devices connected over USB are not supported.

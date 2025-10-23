@@ -92,8 +92,8 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
     # Bashio
     /tmp/** rwk,
     # apcupsd configs (template + final)
-    /etc/apcupsd/**            r,
-    /etc/apcupsd/apcupsd.conf          rw,
+    #/etc/apcupsd/**            r,
+    #/etc/apcupsd/apcupsd.conf          rw,
     /run/{,**} rwk,
     /dev/console         rw,
     # ADDED END

@@ -53,17 +53,12 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
 
     # ADDED START
     # s6/execline need mmap+read+exec on their commands
-    /package/**           mrix,
-    /command/**           mrix,
-    /bin/**               mrix,
-    /usr/bin/**           mrix,
-    /usr/sbin/**          mrix,
-    /sbin/**              mrix,
-    # Allow reading s6 envdir and its files
-    #/run/s6/container_environment/      rk,
-    #/run/s6/container_environment/**   r,
-    # (optional but harmless: allow other s6 runtime bits as read-only)
-    #/run/s6/**                         r,
+    #/package/**           mrix,
+    #/command/**           mrix,
+    #/bin/**               mrix,
+    #/usr/bin/**           mrix,
+    #/usr/sbin/**          mrix,
+    #/sbin/**              mrix,
 
     # CONFIRMED
     signal (receive) set=(kill,term,int,hup,cont),

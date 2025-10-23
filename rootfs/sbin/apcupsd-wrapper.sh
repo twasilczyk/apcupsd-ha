@@ -2,7 +2,7 @@
 
 echo "wrap1"
 # Log to stdout
-mkdir -p /run/systemd/journal
+#mkdir -p /run/systemd/journal
 echo "wrap2"
 syslogd -n -O - &
 

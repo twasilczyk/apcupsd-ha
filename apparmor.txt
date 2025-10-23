@@ -65,14 +65,9 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
     # (optional but harmless: allow other s6 runtime bits as read-only)
     /run/s6/**                         r,
     # Bashio helper (needs read+mmap+exec)
-    /usr/lib/bashio/**        mrix,
+    #/usr/lib/bashio/**        mrix,
     # s6/with-contenv sometimes execs helpers directly
-    /usr/bin/with-contenv     rix,
-
-    # allow signals from the outer profile
-    #signal (receive) set=(term,cont,kill,hup,int) peer=f498a6ad_apcupsd,
-    # (optional: also allow sending back to the outer profile)
-    #signal (send)    set=(term,cont,kill,hup,int) peer=f498a6ad_apcupsd,
+    #/usr/bin/with-contenv     rix,
 
     # CONFIRMED
     signal (receive) set=(kill,term,int,hup,cont),

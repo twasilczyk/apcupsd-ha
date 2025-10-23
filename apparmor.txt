@@ -24,12 +24,8 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
 
   # s6/execline need mmap+read+exec on their commands
   # ADDED START
-  #/package/**           mrix,
-  #/command/**           mrix,
-  #/bin/**               mrix,
-  #/usr/bin/**           mrix,
-  /usr/sbin/**          mrix,
-  /sbin/**              mrix,
+  #/usr/sbin/**          mrix,
+  #/sbin/**              mrix,
   # allow sending signals to the inner profile
   signal (send) set=(term,cont,kill,hup,int) peer=f498a6ad_apcupsd//apcupsd_wrapper,
   # (optional: if the inner ever signals the outer)

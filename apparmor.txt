@@ -30,6 +30,10 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
   /usr/bin/**           mrix,
   /usr/sbin/**          mrix,
   /sbin/**              mrix,
+  # allow sending signals to the inner profile
+  signal (send) set=(term,cont,kill,hup,int) peer=f498a6ad_apcupsd//apcupsd_wrapper,
+  # (optional: if the inner ever signals the outer)
+  signal (receive) set=(term,cont,kill,hup,int) peer=f498a6ad_apcupsd//apcupsd_wrapper,
   #ADDED END
 
   # Bashio
@@ -78,9 +82,10 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
     /usr/lib/bashio/**        mrix,
     # s6/with-contenv sometimes execs helpers directly
     /usr/bin/with-contenv     rix,
-    # allow creating and using /run/systemd (some scripts defensively mkdir it)
-    #/run/systemd        rwkc,
-    #/run/systemd/**      rwkc,
+    # allow signals from the outer profile
+    signal (receive) set=(term,cont,kill,hup,int) peer=f498a6ad_apcupsd,
+    # (optional: also allow sending back to the outer profile)
+    signal (send)    set=(term,cont,kill,hup,int) peer=f498a6ad_apcupsd,
     # ADDED END
   }
 }

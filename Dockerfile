@@ -5,6 +5,6 @@ FROM $BUILD_FROM
 CMD [ "/sbin/apcupsd-wrapper.sh" ]
 
 RUN apk add apcupsd envsubst
-RUN mkdir -p /run/systemd/journal
+#RUN mkdir -p /run/systemd/journal
 
 COPY rootfs /

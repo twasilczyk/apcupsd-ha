@@ -61,7 +61,7 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
     #/sbin/**              mrix,
 
     # S6-Overlay
-    /package/** ix,
+    /package/** mr,
 
     # CONFIRMED
     signal (receive) set=(kill,term,int,hup,cont),

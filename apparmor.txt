@@ -20,7 +20,7 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
   #/run/** mrwixk,
   /run/s6/ mrwixk,
   /run/service/ mrwixk,
-  #/run/{s6,s6-rc*,service} rw,
+  #/run/{s6,s6-rc*,service} mrwixk,
   
   /run/{s6,s6-rc*,service}/** mrwixk,
   /etc/s6-overlay/** r,

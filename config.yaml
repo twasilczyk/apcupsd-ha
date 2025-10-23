@@ -1,12 +1,12 @@
 name: "apcupsd"
 description: "Power Management daemon for NMC-equipped APC UPS"
 url: "https://github.com/twasilczyk/apcupsd-ha"
-version: "0.0.73"
+version: "0.0.74"
 slug: "apcupsd"
-#ports:
-#  3551/tcp: 3551
-#ports_description:
-#  3551/tcp: Network Information Server (NIS) port
+ports:
+  3551/tcp: 3551
+ports_description:
+  3551/tcp: Network Information Server (NIS) port
 init: false
 arch:
   - aarch64

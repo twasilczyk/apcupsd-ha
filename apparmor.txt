@@ -22,15 +22,12 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
   /run/{,**} rwk,
   /dev/tty rw,
 
-  # s6/execline need mmap+read+exec on their commands
   # ADDED START
-  #/usr/sbin/**          mrix,
-  #/sbin/**              mrix,
   # allow sending signals to the inner profile
-  signal (send) set=(term,cont,kill,hup,int) peer=f498a6ad_apcupsd//apcupsd_wrapper,
+  #signal (send) set=(term,cont,kill,hup,int) peer=f498a6ad_apcupsd//apcupsd_wrapper,
   # (optional: if the inner ever signals the outer)
-  signal (receive) set=(term,cont,kill,hup,int) peer=f498a6ad_apcupsd//apcupsd_wrapper,
-  /dev/console         rw,
+  #signal (receive) set=(term,cont,kill,hup,int) peer=f498a6ad_apcupsd//apcupsd_wrapper,
+  #/dev/console         rw,
   #ADDED END
 
   # Bashio

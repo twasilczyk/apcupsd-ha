@@ -1,7 +1,5 @@
 #!/usr/bin/with-contenv bashio
 
-exit 0
-
 # Log to stdout
 syslogd -n -O - &
 

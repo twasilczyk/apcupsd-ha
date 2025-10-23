@@ -95,9 +95,8 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
     /etc/hosts                     r,
     /etc/resolv.conf               r,
     /etc/nsswitch.conf             r,
-    # allow Bashio temp dir
-    /tmp/.bashio/        rwkc,
-    /tmp/.bashio/**      rwk,
+    # Bashio
+    /tmp/** rwk,
     # ADDED END
   }
 }

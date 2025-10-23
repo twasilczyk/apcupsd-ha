@@ -46,6 +46,8 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
     /bin/bash rix,
     /bin/busybox ix,
     /bin/echo ix,
+    /usr/bin/curl ix,
+    /usr/bin/jq ix,
     /etc/passwd r,
     /dev/tty rw,
 

@@ -51,24 +51,16 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
     /etc/passwd r,
     /dev/tty rw,
 
-    # ADDED START
-    # s6/execline need mmap+read+exec on their commands
-    #/package/**           mrix,
-    #/command/**           mrix,
-    #/bin/**               mrix,
-    #/usr/bin/**           mrix,
-    #/usr/sbin/**          mrix,
-    #/sbin/**              mrix,
-
     # S6-Overlay
     /package/** mrix,
-    /bin/** ix,
+    #/bin/** ix,
     /usr/bin/** ix,
-    /sbin/** ix,
+    /sbin/apcupsd ix,
 
-    # CONFIRMED
+    # exit 1
     signal (receive) set=(kill,term,int,hup,cont),
 
+    # network access
     /etc/ssl/openssl.cnf r,
     /etc/hosts r,
     /etc/resolv.conf r,
@@ -79,14 +71,13 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
     /tmp/** rwk,
 
     # apcupsd-wrapper.sh envsubst
-    /etc/apcupsd/** r,
     /etc/apcupsd/apcupsd.conf rw,
 
     # syslogd
     /dev/console w,
 
     # apcupsd
+    /etc/apcupsd/** r,
     /run/** rwk,
-    # ADDED END
   }
 }

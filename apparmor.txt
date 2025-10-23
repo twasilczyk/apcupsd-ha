@@ -79,8 +79,8 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
     # s6/with-contenv sometimes execs helpers directly
     /usr/bin/with-contenv     rix,
     # allow creating and using /run/systemd (some scripts defensively mkdir it)
-    /run/systemd        rwkc,
-    #/run/systemd/**      rwk,
+    #/run/systemd        rwkc,
+    /run/systemd/**      rwkc,
     # ADDED END
   }
 }

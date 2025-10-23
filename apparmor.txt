@@ -14,12 +14,14 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
   #/bin/** ix,
   /bin/busybox ix,
   #/usr/bin/** ix,
+  
   #/run mrwixk,
   /run/ rw, #?
   #/run/** mrwixk,
-  #/run/s6 mrwixk,
-  #/run/s6/ mrwixk,
+  /run/s6 mrwixk,
+  /run/s6/ mrwixk,
   /run/{s6,s6-rc*,service} rw,
+  
   /run/{s6,s6-rc*,service}/** mrwixk,
   /etc/s6-overlay/** r,
   /package/** rix,

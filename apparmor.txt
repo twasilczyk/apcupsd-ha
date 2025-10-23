@@ -68,17 +68,20 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
     /usr/lib/bashio/**        mrix,
     # s6/with-contenv sometimes execs helpers directly
     /usr/bin/with-contenv     rix,
+
     # allow signals from the outer profile
-    signal (receive) set=(term,cont,kill,hup,int) peer=f498a6ad_apcupsd,
+    #signal (receive) set=(term,cont,kill,hup,int) peer=f498a6ad_apcupsd,
     # (optional: also allow sending back to the outer profile)
-    signal (send)    set=(term,cont,kill,hup,int) peer=f498a6ad_apcupsd,
-    # Bashio
-    #/tmp/** rwk,
+    #signal (send)    set=(term,cont,kill,hup,int) peer=f498a6ad_apcupsd,
+
     # CONFIRMED
     /etc/ssl/openssl.cnf r,
     /etc/hosts r,
     /etc/resolv.conf r,
     /etc/nsswitch.conf r,
+
+    # Bashio
+    /tmp/** rwk,
 
     # apcupsd-wrapper.sh envsubst
     /etc/apcupsd/** r,

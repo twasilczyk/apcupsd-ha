@@ -51,8 +51,7 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
 
     # S6-Overlay
     /package/** mrix,
-    #/bin/** ix,
-    /usr/bin/** ix,
+    #/usr/bin/** ix,
     /sbin/apcupsd ix,
 
     # network access

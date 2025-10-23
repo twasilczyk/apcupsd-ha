@@ -11,7 +11,7 @@ if [ -z "$SNMPCOMMUNITY" ]; then
     SNMPCOMMUNITY="public"
 fi
 
-POLLTIME=$(bashio::config 'polltime')
+export POLLTIME=$(bashio::config 'polltime')
 
 echo "cfg start"
 echo 1 $(bashio::config 'deviceaddr')

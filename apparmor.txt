@@ -75,7 +75,6 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
     # Bashio
     /tmp/** rwk,
     # apcupsd configs (template + final)
-    #/run/{,**} rwk,
     #/dev/console         rw,
     # CONFIRMED
     /etc/ssl/openssl.cnf           r,
@@ -85,6 +84,9 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
 
     /etc/apcupsd/**            r,
     /etc/apcupsd/apcupsd.conf          rw,
+
+    # apcupsd
+    /run/** rwk,
     # ADDED END
   }
 }

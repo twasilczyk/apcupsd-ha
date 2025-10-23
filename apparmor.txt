@@ -34,6 +34,7 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
   signal (send) set=(term,cont,kill,hup,int) peer=f498a6ad_apcupsd//apcupsd_wrapper,
   # (optional: if the inner ever signals the outer)
   signal (receive) set=(term,cont,kill,hup,int) peer=f498a6ad_apcupsd//apcupsd_wrapper,
+  /dev/console         rw,
   #ADDED END
 
   # Bashio
@@ -101,7 +102,7 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
     /etc/apcupsd/**            r,
     /etc/apcupsd/apcupsd.conf          rw,
     /run/{,**} rwk,
-    /dev/console         rwa,
+    /dev/console         rw,
     # ADDED END
   }
 }

@@ -27,7 +27,7 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
   /tmp/** rwk,
 
   # Access to options.json and other files within your addon
-  /data/** rw,
+  #/data/** rw,
 
   # Start new profile for service
   /sbin/apcupsd-wrapper.sh cx -> apcupsd_wrapper,
@@ -37,9 +37,6 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
 
     # Receive signals from S6-Overlay
     signal (receive) peer=*apcupsd,
-
-    # Access to options.json and other files within your addon
-    #/data/** rw,
 
     # S6-Overlay
     /package/** mrix,

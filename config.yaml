@@ -1,7 +1,7 @@
 name: "apcupsd"
 description: "Power Management daemon for NMC-equipped APC UPS"
 url: "https://github.com/twasilczyk/apcupsd-ha"
-version: "0.0.41"
+version: "0.0.42"
 slug: "apcupsd"
 ports:
   3551/tcp: 3551
@@ -23,4 +23,4 @@ schema:
   deviceaddr: str
   deviceport: port
   snmpcommunity: str
-  polltime: "int(1,3600)"
+  polltime: int(1,3600)

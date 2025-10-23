@@ -40,9 +40,9 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
   /data/** rw,
 
   # Start new profile for service
-  /sbin/apcupsd-wrapper.sh cx -> apcupsdwr,
+  /sbin/apcupsd-wrapper.sh cx -> apcupsd_wrapper,
 
-  profile apcupsdwr flags=(attach_disconnected,mediate_deleted) {
+  profile apcupsd_wrapper flags=(attach_disconnected,mediate_deleted) {
     #include <abstractions/base>
 
     # Receive signals from S6-Overlay
@@ -78,6 +78,9 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
     /usr/lib/bashio/**        mrix,
     # s6/with-contenv sometimes execs helpers directly
     /usr/bin/with-contenv     rix,
+    # allow creating and using /run/systemd (some scripts defensively mkdir it)
+    /run/systemd/        rwkc,
+    /run/systemd/**      rwk,
     # ADDED END
   }
 }

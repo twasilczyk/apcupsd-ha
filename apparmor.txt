@@ -56,7 +56,6 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
   }
 
   profile jq flags=(attach_disconnected,mediate_deleted) {
-    #include <abstractions/base>
     /usr/bin/jq mr,
   }
 
@@ -76,32 +75,5 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
 
     /etc/apcupsd/apcupsd.conf r,
     /run/apcupsd.pid w,
-  }
-
-  profile old_wrapper flags=(attach_disconnected,mediate_deleted) {
-    #include <abstractions/base>
-
-    # Receive signals from S6-Overlay
-    signal (receive) peer=*apcupsd,
-
-    # S6-Overlay
-    /package/admin/{s6,execline}** mrix,
-    /run/s6/** rwk,
-
-    /bin/busybox ix,
-    /bin/echo ix,
-    /usr/bin/curl ix,
-    /usr/bin/envsubst ix,
-    /usr/bin/jq ix,
-    
-    # syslogd
-    /dev/console w,
-
-    # apcupsd
-    #/etc/apcupsd/** r,
-    #/run/apcupsd.pid rw,
-
-    /sbin/apcupsd r,
-    /sbin/apcupsd px,
   }
 }

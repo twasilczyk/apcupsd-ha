@@ -18,6 +18,10 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
   /etc/{s6**,fix-attrs.d/,services.d/} r,
   /package/admin/{s6,execline}** rix,
 
+  # Supervisor API
+  /usr/bin/curl cx -> curl,
+  /usr/bin/jq cx -> jq,
+
   # Run wrapper within the same context, because double nested contexts are broken on HA Supervisor
   /sbin/apcupsd-wrapper.sh rix,
 
@@ -28,23 +32,19 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
   /tmp/.bashio** rwk,
   /usr/lib/bashio/** ix,
 
-  # syslogd (I can't make it switch context for some reason)
+  # syslogd for apcupsd-wrapper.sh (I can't make it switch context for some reason)
   /run/syslogd.pid rw,
-
-  # Supervisor API
-  /usr/bin/curl cx -> curl,
-  /usr/bin/jq cx -> jq,
 
   profile curl flags=(attach_disconnected,mediate_deleted) {
     #include <abstractions/base>
 
-    /run/apcupsd.pid rw,
+    /usr/bin/curl mr,
   }
 
   profile jq flags=(attach_disconnected,mediate_deleted) {
     #include <abstractions/base>
 
-    /run/apcupsd.pid rw,
+    /usr/bin/jq mr,
   }
 
   profile old_wrapper flags=(attach_disconnected,mediate_deleted) {

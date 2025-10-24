@@ -19,6 +19,7 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
   /run/s6/basedir/ rwix,
   /run/s6/basedir/env/ rwix,
   /run/s6/basedir/run-image/ rw,
+  /run/s6/basedir/run-image/service/ rw,
   #/run/{s6*,service}/** mrwixk,
   
   /etc/** r,

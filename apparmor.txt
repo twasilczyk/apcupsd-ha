@@ -21,7 +21,7 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
   # Run wrapper within the same context, because double nested contexts are broken on HA Supervisor
   /sbin/apcupsd-wrapper.sh rix,
 
-  # Bashio
+  # Bashio for apcupsd-wrapper.sh
   /bin/bash rix,
   /dev/tty rw,
   /etc/passwd r,

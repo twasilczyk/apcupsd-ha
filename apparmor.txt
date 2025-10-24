@@ -12,11 +12,9 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
   # S6-Overlay
   /init rix,
   /bin/busybox ix,
-  #/run/{,s6*,service/,service/s6*} rw,
   /run/{,service/} rw,
-  /run/{,service/}{,.}s6*{,**} krwix,
+  /run/{,service/}{,.}s6** krwix,
   /etc/** r,
-  #/package/admin/{s6,execline}*{,**} rix,
   /package/admin/{s6,execline}** rix,
 
   # Start new profile for service

@@ -19,7 +19,7 @@ fi
 export POLLTIME=$(bashio::config 'polltime')
 
 # Generate apcupsd config
-#envsubst < /etc/apcupsd/apcupsd.conf.in > /etc/apcupsd/apcupsd.conf
+envsubst < /etc/apcupsd/apcupsd.conf.in > /etc/apcupsd/apcupsd.conf
 
 # Start apcupsd in foreground
 #apcupsd -b

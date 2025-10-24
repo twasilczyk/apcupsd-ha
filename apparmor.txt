@@ -16,9 +16,8 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
   /run/{,service/} rw,
   /run/{,service/}{,.}s6*{,**} krwix,
   /etc/** r,
-  
-  #/package/** rix,
-  /package/admin/{s6,execline}*{,**} rix,
+  #/package/admin/{s6,execline}*{,**} rix,
+  /package/admin/{s6,execline}** rix,
 
   # Start new profile for service
   /sbin/apcupsd-wrapper.sh cx -> apcupsd_wrapper,

@@ -73,6 +73,7 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
     /sbin/apcupsd mr,
 
     /etc/apcupsd/apcupsd.conf r,
+    /run/apcupsd.pid w,
   }
 
   profile old_wrapper flags=(attach_disconnected,mediate_deleted) {

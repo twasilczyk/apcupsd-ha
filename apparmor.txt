@@ -1,7 +1,9 @@
-#include <tunables/global>
-
+# To debug apparmor denials:
 # ssh root@192.168.1.XYZ -p 22222
 # journalctl -f _TRANSPORT="audit" -g 'apparmor="DENIED"'
+
+#include <tunables/global>
+
 profile apcupsd flags=(attach_disconnected,mediate_deleted) {
   #include <abstractions/base>
 

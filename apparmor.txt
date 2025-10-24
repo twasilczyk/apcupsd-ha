@@ -17,9 +17,9 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
   /package/admin/{s6,execline}** rix,
 
   # Start new profile for service
-  /sbin/apcupsd-wrapper.sh cx -> apcupsd_wrapper,
+  /sbin/apcupsd-wrapper.sh cx -> wrapper,
 
-  profile apcupsd_wrapper flags=(attach_disconnected,mediate_deleted) {
+  profile wrapper flags=(attach_disconnected,mediate_deleted) {
     #include <abstractions/base>
 
     # Receive signals from S6-Overlay
@@ -63,12 +63,12 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
     #/etc/apcupsd/** r,
     #/run/apcupsd.pid rw,
 
-    /sbin/apcupsd cx -> apcupsd//apcupsd_exec,
-  }
+    /sbin/apcupsd cx -> apcupsd_exec,
 
-  profile apcupsd_exec flags=(attach_disconnected,mediate_deleted) {
-    #include <abstractions/base>
+    profile apcupsd_exec flags=(attach_disconnected,mediate_deleted) {
+      #include <abstractions/base>
 
-    /run/apcupsd.pid rw,
+      /run/apcupsd.pid rw,
+    }
   }
 }

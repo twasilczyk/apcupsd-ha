@@ -12,10 +12,11 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
   # S6-Overlay
   /init rix,
   /bin/busybox ix,
-  /run/{,s6*,service/,service/s6*} rw,
+  #/run/{,s6*,service/,service/s6*} rw,
+  /run/{,service/} rw,
   /run/{,service/}{,.}s6*{,**} krwix,
   /etc/** r,
-  /package/** rix,
+  #/package/** rix,
   # Start new profile for service
   /sbin/apcupsd-wrapper.sh cx -> apcupsd_wrapper,
 

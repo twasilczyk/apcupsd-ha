@@ -4,13 +4,11 @@
 syslogd -n -O - &
 
 # Parse HA config
-bashio::config 'deviceaddr'
-
-#export DEVICEADDR=$(bashio::config 'deviceaddr')
-#if [ -z "$DEVICEADDR" ]; then
-#    bashio::log.error "UPS Address not configured!"
-#    exit 1
-#fi
+export DEVICEADDR=$(bashio::config 'deviceaddr')
+if [ -z "$DEVICEADDR" ]; then
+    bashio::log.error "UPS Address not configured!"
+    exit 1
+fi
 #export DEVICEPORT=161
 
 #export SNMPCOMMUNITY=$(bashio::config 'snmpcommunity')

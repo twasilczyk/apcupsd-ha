@@ -19,12 +19,14 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
   /package/admin/{s6,execline}** rix,
 
   # Run wrapper within the same context, because double nested contexts are broken on HA Supervisor
-  /sbin/apcupsd-wrapper.sh ix,
+  /sbin/apcupsd-wrapper.sh rix,
 
   # Bashio
   /bin/bash rix,
   /usr/lib/bashio/** ix,
   /tmp/.bashio** rwk,
+  /dev/tty rw,
+  /etc/passwd r,
 
   profile old_wrapper flags=(attach_disconnected,mediate_deleted) {
     #include <abstractions/base>
@@ -36,17 +38,12 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
     /package/admin/{s6,execline}** mrix,
     /run/s6/** rwk,
 
-    # Access required for service functionality
-    /sbin/apcupsd-wrapper.sh r,
     /bin/busybox ix,
     /bin/echo ix,
     /usr/bin/curl ix,
     /usr/bin/envsubst ix,
     /usr/bin/jq ix,
-    #/sbin/apcupsd ix,
-    /etc/passwd r,
-    /dev/tty rw,
-
+    
     # network access
     /etc/ssl/openssl.cnf r,
     /etc/hosts r,

@@ -52,7 +52,8 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
     /tmp/.bashio** rwk,
 
     # apcupsd-wrapper.sh envsubst
-    /etc/apcupsd/apcupsd.conf rw,
+    /etc/apcupsd/apcupsd.conf.in r,
+    /etc/apcupsd/apcupsd.conf w,
 
     # syslogd
     /dev/console w,
@@ -62,7 +63,6 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
     #/etc/apcupsd/** r,
     #/run/apcupsd.pid rw,
 
-    # FAILS TO PARSE HERE
     /sbin/apcupsd cx -> apcupsd//apcupsd_exec,
   }
 

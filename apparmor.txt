@@ -6,7 +6,6 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
   #include <abstractions/base>
 
   # Capabilities
-  #file,
   signal (send) set=(kill,term,int,hup,cont),
 
   # S6-Overlay
@@ -14,7 +13,7 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
   /bin/busybox ix,
   /run/{,service/} rw,
   /run/{,service/}{,.}s6** krwix,
-  /etc/** r,
+  #/etc/** r,
   /package/admin/{s6,execline}** rix,
 
   # Start new profile for service

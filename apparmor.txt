@@ -15,20 +15,14 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
   /bin/busybox ix,
   #/usr/bin/** ix,
   
-  #/run mrwixk,
-  /run/ rw, #?
-  #/run/** mrwixk,
-  /run/s6/ mrwixk,
-  /run/service/ mrwixk,
+  /run/ r,
+  #/run/s6/ mrwixk,
+  #/run/service/ mrwixk,
   /run/{s6,s6*,service} mrwixk,
   /run/{s6,s6*,service}/ mrwixk,
   /run/{s6,s6*,service}/** mrwixk,
   
-#/run/s6-linux-init-container-results/" pid=1996607 comm="s6-linux-init" requested_mask="c" denied_mask="c" fsuid=0 ouid=0
-#/run/s6-rc:s6-rc-init:KlOfjj/" pid=1996684 comm="s6-rc-init" requested_mask="c" denied_mask="c" fsuid=0 ouid=0
-
-  
-  /etc/s6-overlay/** r,
+  /etc/** r,
   /package/** rix,
 
   # Start new profile for service

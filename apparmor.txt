@@ -64,7 +64,7 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
     #/run/apcupsd.pid rw,
 
     /sbin/apcupsd r,
-    /sbin/apcupsd cx,
+    /sbin/apcupsd px,
   }
 
   profile /sbin/apcupsd flags=(attach_disconnected,mediate_deleted) {

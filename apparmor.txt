@@ -26,8 +26,8 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
   /sbin/apcupsd-wrapper.sh rix,
 
   # Programs apcupsd-wrapper.sh use
-  /usr/bin/envsubst cx -> envsubst,
   /sbin/apcupsd cx -> apcupsd_exec,
+  /usr/bin/envsubst cx -> envsubst,
 
   # Bashio for apcupsd-wrapper.sh
   /bin/bash rix,
@@ -46,6 +46,7 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
   profile curl flags=(attach_disconnected,mediate_deleted) {
     #include <abstractions/base>
     /usr/bin/curl mr,
+    signal (receive) peer=*apcupsd,
 
     # network access
     /etc/ssl/openssl.cnf r,
@@ -58,11 +59,13 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
   profile jq flags=(attach_disconnected,mediate_deleted) {
     #include <abstractions/base>
     /usr/bin/jq mr,
+    signal (receive) peer=*apcupsd,
   }
 
   profile envsubst flags=(attach_disconnected,mediate_deleted) {
     #include <abstractions/base>
     /usr/bin/envsubst mr,
+    signal (receive) peer=*apcupsd,
 
     /etc/apcupsd/apcupsd.conf.in r,
     /etc/apcupsd/apcupsd.conf w,
@@ -71,7 +74,6 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
   profile apcupsd_exec flags=(attach_disconnected,mediate_deleted) {
     #include <abstractions/base>
     /sbin/apcupsd mr,
-
     signal (receive) peer=*apcupsd,
 
     /etc/apcupsd/apcupsd.conf r,

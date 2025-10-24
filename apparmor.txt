@@ -27,6 +27,7 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
 
     # S6-Overlay
     /package/admin/{s6,execline}** mrix,
+    /run/s6/** rwk,
 
     # Access required for service functionality
     /sbin/apcupsd-wrapper.sh r,
@@ -48,7 +49,7 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
 
     # Bashio
     /usr/lib/bashio/** ix,
-    /tmp/.bashio/ rwk,
+    #/tmp/.bashio/ rwk,
     /tmp/.bashio/** rwk,
 
     # apcupsd-wrapper.sh envsubst
@@ -56,11 +57,10 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
 
     # syslogd
     /dev/console w,
+    /run/syslogd.pid rw,
 
     # apcupsd
     /etc/apcupsd/** r,
-    #/run/** rwk,
-    /run/s6/** rwk,
-    /run/syslogd.pid rw,
+    /run/apcupsd.pid rw,
   }
 }

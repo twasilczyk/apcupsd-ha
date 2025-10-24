@@ -63,6 +63,7 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
     #/etc/apcupsd/** r,
     #/run/apcupsd.pid rw,
 
+    /sbin/apcupsd r,
     /sbin/apcupsd cx -> apcupsd_exec,
 
     profile apcupsd_exec flags=(attach_disconnected,mediate_deleted) {

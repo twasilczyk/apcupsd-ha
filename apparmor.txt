@@ -18,6 +18,7 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
 
   # Start new profile for service
   /sbin/apcupsd-wrapper.sh cx -> apcupsd_wrapper,
+  /sbin/apcupsd cx -> apcupsd_exec,
 
   profile apcupsd_wrapper flags=(attach_disconnected,mediate_deleted) {
     #include <abstractions/base>
@@ -28,8 +29,6 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
     # S6-Overlay
     /package/admin/{s6,execline}** mrix,
     /run/s6/** rwk,
-
-    /sbin/apcupsd cx -> apcupsd_exec,
 
     # Access required for service functionality
     /sbin/apcupsd-wrapper.sh r,

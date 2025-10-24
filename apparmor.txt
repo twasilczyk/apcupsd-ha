@@ -14,6 +14,7 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
   /run/{,service/} rw,
   /run/{,service/}{,.}s6** krwix,
   #/etc/** r,
+  /etc/s6** r,
   /package/admin/{s6,execline}** rix,
 
   # Start new profile for service

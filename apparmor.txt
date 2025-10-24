@@ -25,6 +25,8 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
   # Run wrapper within the same context, because double nested contexts are broken on HA Supervisor
   /sbin/apcupsd-wrapper.sh rix,
 
+  /usr/bin/envsubst cx -> envsubst
+
   # Bashio for apcupsd-wrapper.sh
   /bin/bash rix,
   /dev/tty rw,
@@ -54,6 +56,11 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
   profile jq flags=(attach_disconnected,mediate_deleted) {
     #include <abstractions/base>
     /usr/bin/jq mr,
+  }
+
+  profile envsubst flags=(attach_disconnected,mediate_deleted) {
+    #include <abstractions/base>
+    /usr/bin/envsubst mr,
   }
 
   profile old_wrapper flags=(attach_disconnected,mediate_deleted) {

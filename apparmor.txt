@@ -35,6 +35,10 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
   # syslogd for apcupsd-wrapper.sh (I can't make it switch context for some reason)
   /run/syslogd.pid rw,
 
+  # envsubst in/out for apcupsd-wrapper.sh
+  /etc/apcupsd/apcupsd.conf.in r,
+  /etc/apcupsd/apcupsd.conf w,
+
   profile curl flags=(attach_disconnected,mediate_deleted) {
     #include <abstractions/base>
     /usr/bin/curl mr,
@@ -68,10 +72,6 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
     /usr/bin/envsubst ix,
     /usr/bin/jq ix,
     
-    # apcupsd-wrapper.sh envsubst
-    /etc/apcupsd/apcupsd.conf.in r,
-    /etc/apcupsd/apcupsd.conf w,
-
     # syslogd
     /dev/console w,
 

@@ -28,14 +28,14 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
   /tmp/.bashio** rwk,
   /usr/lib/bashio/** ix,
 
-  /sbin/syslogd cx -> syslogd,
+  # syslogd (I can't make it switch context for some reason)
+  /run/syslogd.pid rw,
 
   profile syslogd flags=(attach_disconnected,mediate_deleted) {
     #include <abstractions/base>
 
     /run/apcupsd.pid rw,
   }
-
 
   profile old_wrapper flags=(attach_disconnected,mediate_deleted) {
     #include <abstractions/base>
@@ -65,7 +65,6 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
 
     # syslogd
     /dev/console w,
-    /run/syslogd.pid rw,
 
     # apcupsd
     #/etc/apcupsd/** r,

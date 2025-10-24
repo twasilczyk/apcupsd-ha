@@ -20,6 +20,7 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
   /sbin/apcupsd-wrapper.sh ix,
 
   # Bashio
+  /bin/bash rix,
   /usr/lib/bashio/** ix,
   /tmp/.bashio** rwk,
 
@@ -35,7 +36,6 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
 
     # Access required for service functionality
     /sbin/apcupsd-wrapper.sh r,
-    /bin/bash rix,
     /bin/busybox ix,
     /bin/echo ix,
     /usr/bin/curl ix,

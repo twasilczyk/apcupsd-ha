@@ -64,12 +64,12 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
     #/run/apcupsd.pid rw,
 
     /sbin/apcupsd r,
-    /sbin/apcupsd cx -> apcupsd_exec,
-
-    profile apcupsd_exec flags=(attach_disconnected,mediate_deleted) {
-      #include <abstractions/base>
-
-      /run/apcupsd.pid rw,
-    }
+    /sbin/apcupsd cx -> :/apcupsd_exec,
   }
+}
+
+profile apcupsd_exec flags=(attach_disconnected,mediate_deleted) {
+  #include <abstractions/base>
+
+  /run/apcupsd.pid rw,
 }

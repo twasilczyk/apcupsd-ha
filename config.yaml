@@ -1,7 +1,7 @@
 name: "apcupsd"
 description: "Power Management daemon for NMC-equipped APC UPS"
 url: "https://github.com/twasilczyk/apcupsd-ha"
-version: "0.0.153"
+version: "0.0.154"
 slug: "apcupsd"
 ports:
   3551/tcp: 3551

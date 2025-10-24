@@ -11,12 +11,12 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
   signal (send) set=(kill,term,int,hup,cont) peer=*_apcupsd//*,
 
   # S6-Overlay
-  /init rix,
   /bin/busybox ix,
+  /etc/{s6**,fix-attrs.d/,services.d/} r,
+  /init rix,
+  /package/admin/{s6,execline}** rix,
   /run/{,service/} rw,
   /run/{,service/}{,.}s6** krwix,
-  /etc/{s6**,fix-attrs.d/,services.d/} r,
-  /package/admin/{s6,execline}** rix,
 
   # Supervisor API
   /usr/bin/curl cx -> curl,
@@ -37,7 +37,7 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
   /usr/lib/bashio/** ix,
 
   # syslogd for apcupsd-wrapper.sh (I can't make it switch context for some reason)
-  /run/syslogd.pid rw,
+  /run/syslogd.pid w,
 
   # envsubst in/out for apcupsd-wrapper.sh
   /etc/apcupsd/apcupsd.conf.in r,
@@ -56,6 +56,7 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
   }
 
   profile jq flags=(attach_disconnected,mediate_deleted) {
+    #include <abstractions/base>
     /usr/bin/jq mr,
   }
 

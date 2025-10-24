@@ -49,8 +49,7 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
 
     # Bashio
     /usr/lib/bashio/** ix,
-    #/tmp/.bashio/ rwk,
-    /tmp/.bashio/** rwk,
+    /tmp/.bashio** rwk,
 
     # apcupsd-wrapper.sh envsubst
     /etc/apcupsd/apcupsd.conf rw,

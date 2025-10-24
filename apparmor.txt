@@ -39,6 +39,13 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
     #include <abstractions/base>
 
     /usr/bin/curl mr,
+
+    # network access
+    /etc/ssl/openssl.cnf r,
+    /etc/hosts r,
+    /etc/passwd r,
+    /etc/resolv.conf r,
+    /etc/nsswitch.conf r,
   }
 
   profile jq flags=(attach_disconnected,mediate_deleted) {
@@ -63,12 +70,6 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
     /usr/bin/envsubst ix,
     /usr/bin/jq ix,
     
-    # network access
-    /etc/ssl/openssl.cnf r,
-    /etc/hosts r,
-    /etc/resolv.conf r,
-    /etc/nsswitch.conf r,
-
     # apcupsd-wrapper.sh envsubst
     /etc/apcupsd/apcupsd.conf.in r,
     /etc/apcupsd/apcupsd.conf w,

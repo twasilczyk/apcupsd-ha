@@ -1,7 +1,7 @@
 #!/usr/bin/with-contenv bashio
 
 # Log to stdout
-#syslogd -n -O - &
+syslogd -n -O - &
 
 # Parse HA config
 #export DEVICEADDR=$(bashio::config 'deviceaddr')

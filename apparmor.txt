@@ -23,10 +23,10 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
 
   # Bashio
   /bin/bash rix,
-  /usr/lib/bashio/** ix,
-  /tmp/.bashio** rwk,
   /dev/tty rw,
   /etc/passwd r,
+  /tmp/.bashio** rwk,
+  /usr/lib/bashio/** ix,
 
   profile old_wrapper flags=(attach_disconnected,mediate_deleted) {
     #include <abstractions/base>

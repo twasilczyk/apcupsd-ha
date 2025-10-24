@@ -13,7 +13,7 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
   /init rix,
   /bin/busybox ix,
   #/run/ rw,
-  /run/{,s6/,service/} rw,
+  /run/{,s6/,s6*,service/} rw,
   /run/{,service/}{,.}s6*/{,**} krwix,
   /etc/** r,
   /package/** rix,

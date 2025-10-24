@@ -6,7 +6,7 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
   #include <abstractions/base>
 
   # Capabilities
-  #signal (send) set=(kill,term,int,hup,cont) peer=apcupsd_wrapper,
+  signal (send) set=(kill,term,int,hup,cont) peer=*_apcupsd*,
 
   # S6-Overlay
   /init rix,

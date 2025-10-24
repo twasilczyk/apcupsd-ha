@@ -76,6 +76,7 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
     /sbin/apcupsd mr,
     signal (receive) peer=*apcupsd,
 
+    /dev/console w,
     /etc/apcupsd/apcupsd.conf r,
     /run/apcupsd.pid w,
   }

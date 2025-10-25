@@ -21,4 +21,4 @@ jobs:
         with:
           args: |
             --all \
-            --docker-hub user-name-or-space-name
+            --docker-hub twasilczyk

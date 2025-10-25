@@ -1,3 +1,4 @@
+LABEL org.opencontainers.image.source https://github.com/twasilczyk/apcupsd-ha
 ARG BUILD_FROM=error
 FROM $BUILD_FROM
 

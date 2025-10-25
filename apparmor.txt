@@ -45,6 +45,7 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
 
   profile curl flags=(attach_disconnected,mediate_deleted) {
     #include <abstractions/base>
+    #include <abstractions/nameservice>
     #include <abstractions/openssl>
     /usr/bin/curl mr,
     signal (receive) peer=*apcupsd,

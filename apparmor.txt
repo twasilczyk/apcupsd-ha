@@ -37,7 +37,7 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
   /usr/lib/bashio/** ix,
 
   # syslogd for apcupsd-wrapper.sh (I can't make it switch context for some reason)
-  /run/syslogd.pid w,
+  /run/syslogd.pid rw,
 
   # envsubst in/out for apcupsd-wrapper.sh
   /etc/apcupsd/apcupsd.conf.in r,
@@ -45,15 +45,10 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
 
   profile curl flags=(attach_disconnected,mediate_deleted) {
     #include <abstractions/base>
+    #include <abstractions/nameservice-strict>
+    #include <abstractions/openssl>
     /usr/bin/curl mr,
     signal (receive) peer=*apcupsd,
-
-    # network access
-    /etc/ssl/openssl.cnf r,
-    /etc/hosts r,
-    /etc/passwd r,
-    /etc/resolv.conf r,
-    /etc/nsswitch.conf r,
   }
 
   profile jq flags=(attach_disconnected,mediate_deleted) {
@@ -78,6 +73,6 @@ profile apcupsd flags=(attach_disconnected,mediate_deleted) {
 
     /dev/console w,
     /etc/apcupsd/apcupsd.conf r,
-    /run/apcupsd.pid w,
+    /run/apcupsd.pid rw,
   }
 }
